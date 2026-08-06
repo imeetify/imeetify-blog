@@ -1,0 +1,1 @@
+export default function Loading() { return <main className="mx-auto flex min-h-[60vh] max-w-6xl items-center justify-center px-5"><p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">Loading stories</p></main> }

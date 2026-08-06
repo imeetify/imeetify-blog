@@ -53,7 +53,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.55 0.19 255);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -153,11 +153,24 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+@theme inline {
+  --font-sans: var(--font-inter), Arial, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
 }
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground font-sans; }
+  a { @apply transition-colors; }
+}
+
+.prose { color: var(--foreground); line-height: 1.85; }
+.prose h2 { margin-top: 2.5rem; margin-bottom: 1rem; font-family: var(--font-playfair), Georgia, serif; font-size: 2rem; font-weight: 700; line-height: 1.15; }
+.prose h3 { margin-top: 2rem; margin-bottom: .75rem; font-family: var(--font-playfair), Georgia, serif; font-size: 1.5rem; font-weight: 700; }
+.prose p { margin: 1.25rem 0; }
+.prose a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul, .prose ol { margin: 1.25rem 0; padding-left: 1.5rem; }
+.prose li { margin: .5rem 0; }
+.prose blockquote { border-left: 3px solid var(--primary); margin: 2rem 0; padding-left: 1.25rem; font-family: var(--font-playfair), Georgia, serif; font-size: 1.25rem; font-style: italic; }
+.prose img { margin: 2rem 0; height: auto; }
+
