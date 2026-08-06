@@ -1,0 +1,3 @@
+import Link from 'next/link'
+
+export default function NotFound() { return <main className="mx-auto flex min-h-[60vh] max-w-6xl flex-col items-center justify-center gap-4 px-5 text-center"><p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">404</p><h1 className="font-serif text-5xl font-bold">Story not found</h1><p className="text-muted-foreground">That story may have moved, but there is plenty more to explore.</p><Link href="/" className="mt-3 border border-primary px-5 py-3 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground">Back to the journal</Link></main> }
