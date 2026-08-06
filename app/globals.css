@@ -181,3 +181,14 @@
 .prose th, .prose td { border-bottom: 1px solid #e3e7ed; padding: .75rem; text-align: left; }
 .prose th { color: #17253d; font-weight: 700; }
 
+.sidebar-widget { border: 1px solid #e3e7ed; border-radius: 1rem; background: #fff; padding: 1.5rem; box-shadow: 0 8px 24px rgba(24, 38, 61, .045); }
+.sidebar-widget-accent { background: #f2f0ff; border-color: transparent; }
+.sidebar-title { color: #17253d; font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+.dark .sidebar-widget { border-color: rgba(255,255,255,.1); background: #202b3e; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.dark .sidebar-widget-accent { border-color: transparent; background: #28324a; }
+.dark .sidebar-title { color: #fff; }
+
+@media (min-width: 1024px) {
+  .sidebar-widget { padding: 1.5rem; }
+}
+
