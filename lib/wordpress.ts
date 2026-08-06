@@ -18,6 +18,7 @@ export type WpPost = {
 }
 
 export type WpCategory = { id: number; name: string; slug: string; count: number }
+export type WpTag = { id: number; name: string; slug: string; count: number }
 
 async function wpFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
@@ -40,6 +41,15 @@ export function formatDate(value: string) {
 
 export function getFeaturedImage(post: WpPost) {
   return post._embedded?.['wp:featuredmedia']?.[0]?.source_url || ''
+}
+
+export function getAuthor(post: WpPost) {
+  return post._embedded?.author?.[0] || { name: 'imeetify team' }
+}
+
+export function getReadingTime(value: string) {
+  const words = stripHtml(value).split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 220))
 }
 
 export function getPostCategories(post: WpPost) {
@@ -68,6 +78,10 @@ export async function getPostBySlug(slug: string) {
 
 export async function getCategories() {
   return wpFetch<WpCategory[]>('/categories?per_page=20&orderby=count&order=desc')
+}
+
+export async function getTags() {
+  return wpFetch<WpTag[]>('/tags?per_page=12&orderby=count&order=desc')
 }
 
 export async function getRecentPosts(excludeId?: number) {

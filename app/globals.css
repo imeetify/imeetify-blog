@@ -173,4 +173,22 @@
 .prose li { margin: .5rem 0; }
 .prose blockquote { border-left: 3px solid #54bd70; margin: 2rem 0; padding-left: 1.25rem; font-size: 1.1rem; font-style: italic; }
 .prose img { margin: 2rem 0; height: auto; border-radius: .5rem; }
+.prose h2[id], .prose h3[id] { scroll-margin-top: 2rem; }
+.prose pre { overflow-x: auto; border-radius: .75rem; background: #17253d; color: #edf3fa; padding: 1.25rem; font-family: var(--font-mono); font-size: .85rem; line-height: 1.7; }
+.prose code { border-radius: .25rem; background: #f0f3f7; padding: .15rem .35rem; font-family: var(--font-mono); font-size: .9em; color: #17253d; }
+.prose pre code { background: transparent; padding: 0; color: inherit; }
+.prose table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.prose th, .prose td { border-bottom: 1px solid #e3e7ed; padding: .75rem; text-align: left; }
+.prose th { color: #17253d; font-weight: 700; }
+
+.sidebar-widget { border: 1px solid #e3e7ed; border-radius: 1rem; background: #fff; padding: 1.5rem; box-shadow: 0 8px 24px rgba(24, 38, 61, .045); }
+.sidebar-widget-accent { background: #f2f0ff; border-color: transparent; }
+.sidebar-title { color: #17253d; font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+.dark .sidebar-widget { border-color: rgba(255,255,255,.1); background: #202b3e; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.dark .sidebar-widget-accent { border-color: transparent; background: #28324a; }
+.dark .sidebar-title { color: #fff; }
+
+@media (min-width: 1024px) {
+  .sidebar-widget { padding: 1.5rem; }
+}
 
