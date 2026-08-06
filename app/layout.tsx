@@ -1,10 +1,9 @@
 import { Analytics } from '@vercel/analytics/next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Lexend_Deca } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
+const lexend = Lexend_Deca({ subsets: ['latin'], variable: '--font-lexend' })
 
 export const metadata: Metadata = {
   title: 'imeetify | Ideas for better meetings',
@@ -17,5 +16,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { colorScheme: 'light', themeColor: '#ffffff', width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className="bg-background"><body className={`${inter.variable} ${playfair.variable} antialiased`}>{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
+  return <html lang="en" className="light bg-background"><body className={`${lexend.variable} antialiased font-sans`}>{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
 }
