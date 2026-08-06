@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Lexend_Deca } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { ReadingProgress } from '@/components/reading-progress'
 
 const lexend = Lexend_Deca({ subsets: ['latin'], variable: '--font-lexend' })
 
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { colorScheme: 'light', themeColor: '#ffffff', width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className="light bg-background"><body className={`${lexend.variable} antialiased font-sans`}>{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
+  return <html lang="en" className="light bg-background"><body className={`${lexend.variable} antialiased font-sans`}><ReadingProgress />{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
 }

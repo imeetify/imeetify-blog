@@ -42,6 +42,15 @@ export function getFeaturedImage(post: WpPost) {
   return post._embedded?.['wp:featuredmedia']?.[0]?.source_url || ''
 }
 
+export function getAuthor(post: WpPost) {
+  return post._embedded?.author?.[0] || { name: 'imeetify team' }
+}
+
+export function getReadingTime(value: string) {
+  const words = stripHtml(value).split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 220))
+}
+
 export function getPostCategories(post: WpPost) {
   return post._embedded?.['wp:term']?.flat().filter((term) => term.name) || []
 }

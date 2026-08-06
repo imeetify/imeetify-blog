@@ -173,4 +173,11 @@
 .prose li { margin: .5rem 0; }
 .prose blockquote { border-left: 3px solid #54bd70; margin: 2rem 0; padding-left: 1.25rem; font-size: 1.1rem; font-style: italic; }
 .prose img { margin: 2rem 0; height: auto; border-radius: .5rem; }
+.prose h2[id], .prose h3[id] { scroll-margin-top: 2rem; }
+.prose pre { overflow-x: auto; border-radius: .75rem; background: #17253d; color: #edf3fa; padding: 1.25rem; font-family: var(--font-mono); font-size: .85rem; line-height: 1.7; }
+.prose code { border-radius: .25rem; background: #f0f3f7; padding: .15rem .35rem; font-family: var(--font-mono); font-size: .9em; color: #17253d; }
+.prose pre code { background: transparent; padding: 0; color: inherit; }
+.prose table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.prose th, .prose td { border-bottom: 1px solid #e3e7ed; padding: .75rem; text-align: left; }
+.prose th { color: #17253d; font-weight: 700; }
 
