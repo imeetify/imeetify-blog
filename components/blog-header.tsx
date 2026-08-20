@@ -2,16 +2,22 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 const logo = 'https://imeetify.blog/wp-content/uploads/2025/08/app-logo@2x.png'
-const banner = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Aug%2020%2C%202026%2C%2001_24_52%20PM-Fa0WZWAgI73YftDJwPVrm8Tpj6kvIT.png'
+const announcement = 'Make every meeting count with imeetify.'
 
 export function BlogHeader() {
   const [open, setOpen] = useState(false)
+  const [announcementOpen, setAnnouncementOpen] = useState(true)
   return <>
-    <div className="promo-banner h-[150px] bg-cover bg-center sm:h-[210px] lg:h-[300px]" style={{ backgroundImage: `url(${banner})` }} role="img" aria-label="iMeetify online meetings promotion: just $50 per year" />
+    {announcementOpen && <div className="announcement-banner border-b">
+      <div className="mx-auto flex max-w-[1260px] flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-2.5 text-[12px] font-semibold lg:px-8">
+        <p className="flex min-w-0 flex-1 items-center gap-2 leading-5"><span className="announcement-pill rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em]">New</span><span>{announcement}</span></p>
+        <div className="flex shrink-0 items-center gap-3"><a className="announcement-link inline-flex items-center gap-1 transition-opacity hover:opacity-75" href="https://imeetify.com" target="_blank" rel="noreferrer">Explore imeetify <ArrowUpRight aria-hidden="true" className="size-3.5" /></a><button type="button" className="inline-flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-card hover:text-foreground" aria-label="Dismiss announcement" onClick={() => setAnnouncementOpen(false)}><X aria-hidden="true" className="size-4" /></button></div>
+      </div>
+    </div>}
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1260px] items-center justify-between px-5 py-4 lg:px-8">
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)} aria-label="imeetify blog home"><Image src={logo} alt="imeetify" width={130} height={29} className="dark:brightness-0 dark:invert" unoptimized priority /></Link>

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Clock3, Mail, Rss, Search, Tag, Users } from 'lucide-react'
+import { ArrowUpRight, Clock3, Mail, Rss, Tag, Users } from 'lucide-react'
 import { getCategories, getFeaturedImage, getPostCategories, getReadingTime, getTags, stripHtml, type WpCategory, type WpPost, type WpTag } from '@/lib/wordpress'
 import { ArticleToc } from '@/components/article-toc'
 import { NewsletterCta } from '@/components/newsletter-cta'
@@ -26,7 +26,6 @@ export async function BlogSidebar({ recent, current }: { recent: WpPost[]; curre
   const toc = current ? getTocItems(current.content.rendered) : []
   const featured = recent[0]
   return <aside className="flex flex-col gap-5" aria-label="Blog sidebar">
-    <section className="sidebar-widget sidebar-widget-accent"><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#54bd70]"><Search className="size-4" /> Find an idea</div><form action="/" className="mt-4 flex items-center overflow-hidden rounded-xl border border-[#dce2e9] bg-white dark:border-white/10 dark:bg-white/5"><label className="sr-only" htmlFor="blog-search">Search the blog</label><input id="blog-search" name="s" className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-[#17253d] outline-none placeholder:text-[#8a97aa] dark:text-white" placeholder="Search articles" /><button type="submit" className="flex size-11 items-center justify-center bg-[#54bd70] text-[#10213b] transition-colors hover:bg-[#76d58c]" aria-label="Search"><Search className="size-4" /></button></form></section>
     {current && toc.length > 0 && <section className="sidebar-widget"><ArticleToc items={toc} /></section>}
     {featured && <section className="sidebar-widget"><div className="flex items-center justify-between"><h2 className="sidebar-title">Featured article</h2><Tag className="size-4 text-[#54bd70]" /></div><Link href={`/${featured.slug}`} className="group mt-4 block overflow-hidden rounded-xl bg-[#f3f6f9] dark:bg-white/5"><div className="relative aspect-[1.8] overflow-hidden">{getFeaturedImage(featured) && <Image src={getFeaturedImage(featured)} alt="" fill sizes="300px" className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />}</div><div className="p-4"><p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#54bd70]">{stripHtml(getPostCategories(featured)[0]?.name || 'Latest')}</p><h3 className="mt-2 line-clamp-3 text-[15px] font-bold leading-5 text-[#17253d] group-hover:text-[#54bd70] dark:text-white">{stripHtml(featured.title.rendered)}</h3></div></Link></section>}
     <section className="sidebar-widget"><h2 className="sidebar-title">Recent posts</h2><div className="mt-4 flex flex-col gap-2">{recent.slice(0, 4).map((post) => <PostMiniCard key={post.id} post={post} />)}</div></section>
