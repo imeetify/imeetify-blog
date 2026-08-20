@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { ArrowUpRight, Clock3, Mail, Rss, Search, Tag, Users } from 'lucide-react'
 import { getCategories, getFeaturedImage, getPostCategories, getReadingTime, getTags, stripHtml, type WpCategory, type WpPost, type WpTag } from '@/lib/wordpress'
 import { ArticleToc } from '@/components/article-toc'
-import { ArticleTools } from '@/components/article-tools'
 import { NewsletterCta } from '@/components/newsletter-cta'
 
 function getTocItems(html: string) {
@@ -35,7 +34,6 @@ export async function BlogSidebar({ recent, current }: { recent: WpPost[]; curre
     {tags.length > 0 && <section className="sidebar-widget"><h2 className="sidebar-title">Explore tags</h2><div className="mt-4 flex flex-wrap gap-2">{tags.map((tag) => <Link key={tag.id} href={`/?tag=${tag.slug}`} className="rounded-full border border-[#dce2e9] px-3 py-1.5 text-[11px] font-semibold text-[#647087] transition-colors hover:border-[#54bd70] hover:text-[#54bd70] dark:border-white/10 dark:text-[#b6c1d0]">{stripHtml(tag.name)}</Link>)}</div></section>}
     <NewsletterCta />
     <section className="sidebar-widget"><div className="flex items-center gap-2"><Users className="size-4 text-[#54bd70]" /><h2 className="sidebar-title">Follow imeetify</h2></div><div className="mt-4 flex items-center gap-2"><a href="https://imeetify.com" target="_blank" rel="noreferrer" className="rounded-lg border border-[#dce2e9] px-3 py-2 text-xs font-bold text-[#647087] transition-colors hover:border-[#54bd70] hover:text-[#54bd70] dark:border-white/10 dark:text-[#b6c1d0]">Website</a><a href="mailto:hello@imeetify.com" className="inline-flex items-center gap-2 rounded-lg border border-[#dce2e9] px-3 py-2 text-xs font-bold text-[#647087] transition-colors hover:border-[#54bd70] hover:text-[#54bd70] dark:border-white/10 dark:text-[#b6c1d0]"><Mail className="size-3.5" /> Email</a><a href="https://imeetify.blog/feed/" target="_blank" rel="noreferrer" aria-label="RSS feed" className="inline-flex size-9 items-center justify-center rounded-lg border border-[#dce2e9] text-[#647087] transition-colors hover:border-[#54bd70] hover:text-[#54bd70] dark:border-white/10 dark:text-[#b6c1d0]"><Rss className="size-4" /></a></div></section>
-    {current && <section className="sidebar-widget"><h2 className="sidebar-title">Share this story</h2><div className="mt-4"><ArticleTools url={current.link || 'https://imeetify.blog'} title={stripHtml(current.title.rendered)} /></div></section>}
     <section className="rounded-2xl bg-[#17253d] p-7 text-white shadow-[0_16px_40px_rgba(23,37,61,0.16)]"><Tag className="size-5 text-[#76d58c]" /><h2 className="mt-4 text-xl font-bold">Make meetings matter.</h2><p className="mt-2 text-sm leading-6 text-[#c4ccda]">Bring thoughtful collaboration into every conversation with imeetify.</p><Link href="https://imeetify.com" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#8fe3a0] hover:text-white">Explore imeetify <ArrowUpRight className="size-4" /></Link></section>
   </aside>
 }

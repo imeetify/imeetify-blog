@@ -28,7 +28,7 @@ export function BlogPost({ post, recent }: { post: WpPost; recent: WpPost[] }) {
   const toc = getTocItems(content)
   const category = stripHtml(getPostCategories(post)[0]?.name || 'Insights')
   return <>
-    <main className="mx-auto grid max-w-[1280px] items-start gap-10 px-5 pb-16 pt-8 sm:pt-12 lg:grid-cols-[minmax(0,860px)_320px] lg:gap-16 lg:px-8 lg:pb-24">
+    <main className="mx-auto grid max-w-[1280px] items-start gap-10 px-5 pb-16 pt-10 sm:pt-16 lg:grid-cols-[minmax(0,860px)_320px] lg:gap-16 lg:px-8 lg:pb-24">
       <article className="min-w-0">
         <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-[#647087] hover:text-[#54bd70]"><ArrowLeft aria-hidden="true" className="size-4" /> Back to all stories</Link>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#54bd70]"><span>{category}</span><span className="text-[#a8b1be]">•</span><time dateTime={post.date}>{formatDate(post.date)}</time></div>
@@ -38,7 +38,7 @@ export function BlogPost({ post, recent }: { post: WpPost; recent: WpPost[] }) {
         {image && <div className="relative mt-9 aspect-[16/9] overflow-hidden rounded-2xl bg-[#eef1f5] shadow-[0_18px_50px_rgba(23,37,61,0.12)]"><Image src={image} alt={post._embedded?.['wp:featuredmedia']?.[0]?.alt_text || title} fill sizes="(max-width: 1024px) 100vw, 860px" className="object-cover" unoptimized priority /></div>}
         <div className="mt-8 border-y border-[#e7ebf0] py-4"><ArticleTools url={post.link} title={title} /></div>
         <div className="mt-8 lg:hidden"><ArticleToc items={toc} /></div>
-        <div className="mt-8 grid gap-8 lg:grid-cols-[170px_minmax(0,1fr)]"><div className="hidden lg:sticky lg:top-[100px] lg:block lg:self-start"><ArticleToc items={toc} /></div><div className="prose min-w-0 text-[15px] text-[#4d5b70]" dangerouslySetInnerHTML={{ __html: content }} /></div>
+        <div className="mt-10 grid gap-10 lg:grid-cols-[170px_minmax(0,1fr)]"><div className="hidden lg:sticky lg:top-[100px] lg:block lg:self-start"><ArticleToc items={toc} /></div><div className="prose min-w-0 text-[16px] text-[#4d5b70] sm:text-[17px]" dangerouslySetInnerHTML={{ __html: content }} /></div>
         <div className="mt-12"><NewsletterCta /></div>
         {recent.length > 0 && <section className="mt-14 border-t border-[#e3e7ed] pt-10"><div className="flex items-end justify-between gap-4"><div><p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#54bd70]">Keep reading</p><h2 className="mt-2 text-3xl font-bold tracking-[-0.03em] text-[#17253d]">More from imeetify</h2></div><Link href="/" className="hidden items-center gap-2 text-sm font-bold text-[#17253d] hover:text-[#54bd70] sm:flex">View all <ArrowRight className="size-4" /></Link></div><div className="mt-6 grid gap-6 md:grid-cols-2">{recent.slice(0, 2).map((item) => <BlogCard key={item.id} post={item} />)}</div></section>}
       </article>
