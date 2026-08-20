@@ -6,12 +6,12 @@ import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 const logo = 'https://imeetify.blog/wp-content/uploads/2025/08/app-logo@2x.png'
-const banner = 'https://imeetify.blog/wp-content/uploads/elementor/thumbs/blog-banner-2-qtjijut2amp4hjbgkr8kks9pgumwjyhxlzpyalnqxg.png'
+const banner = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Aug%2020%2C%202026%2C%2001_24_52%20PM-Fa0WZWAgI73YftDJwPVrm8Tpj6kvIT.png'
 
 export function BlogHeader() {
   const [open, setOpen] = useState(false)
   return <>
-    <div className="h-8 bg-cover bg-center opacity-90" style={{ backgroundImage: `url(${banner})` }} aria-hidden="true" />
+    <div className="promo-banner h-[150px] bg-cover bg-center sm:h-[210px] lg:h-[300px]" style={{ backgroundImage: `url(${banner})` }} role="img" aria-label="iMeetify online meetings promotion: just $50 per year" />
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1260px] items-center justify-between px-5 py-4 lg:px-8">
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)} aria-label="imeetify blog home"><Image src={logo} alt="imeetify" width={130} height={29} className="dark:brightness-0 dark:invert" unoptimized priority /></Link>
