@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   openGraph: { title: 'imeetify | Ideas for better meetings', description: 'The imeetify journal.', type: 'website' },
 }
 
-export const viewport: Viewport = { colorScheme: 'light', themeColor: '#ffffff', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#101827', width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className="light bg-background"><body className={`${lexend.variable} antialiased font-sans`}><ReadingProgress />{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
+  return <html lang="en" className="dark bg-background"><body className={`${lexend.variable} antialiased font-sans`}><ReadingProgress />{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
 }
