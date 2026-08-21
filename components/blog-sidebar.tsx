@@ -3,10 +3,15 @@ import Link from 'next/link'
 import { ArrowUpRight, Clock3, Mail, Rss, Tag, Users } from 'lucide-react'
 import { getCategories, getFeaturedImage, getPostCategories, getReadingTime, getTags, stripHtml, type WpCategory, type WpPost, type WpTag } from '@/lib/wordpress'
 import { ArticleToc } from '@/components/article-toc'
+import { ArticleTools } from '@/components/article-tools'
 import { NewsletterCta } from '@/components/newsletter-cta'
 
 function getTocItems(html: string) {
-  return [...html.matchAll(/<h[2-3][^>]*>(.*?)<\/h[2-3]>/gi)].map((match) => stripHtml(match[1]))
+  return [...html.matchAll(/<h[2-6][^>]*>(.*?)<\/h[2-6]>/gi)].map((match) => stripHtml(match[1]))
+}
+
+function RelatedArticles({ posts }: { posts: WpPost[] }) {
+  return <section className="sidebar-widget"><h2 className="sidebar-title">Related articles</h2><div className="mt-4 flex flex-col gap-2">{posts.slice(0, 3).map((post) => <PostMiniCard key={post.id} post={post} label={new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} />)}</div></section>
 }
 
 function PostMiniCard({ post, label }: { post: WpPost; label?: string }) {
@@ -25,8 +30,12 @@ export async function BlogSidebar({ recent, current }: { recent: WpPost[]; curre
   if (tagResult.status === 'fulfilled') tags = tagResult.value
   const toc = current ? getTocItems(current.content.rendered) : []
   const featured = recent[0]
+  if (current) return <aside className="flex flex-col gap-5" aria-label="Article sidebar">
+    <section className="sidebar-widget"><ArticleToc items={toc} /></section>
+    <section className="sidebar-widget"><h2 className="sidebar-title">Share article</h2><div className="mt-4"><ArticleTools url={current.link} title={stripHtml(current.title.rendered)} /></div></section>
+    <RelatedArticles posts={recent} />
+  </aside>
   return <aside className="flex flex-col gap-5" aria-label="Blog sidebar">
-    {current && toc.length > 0 && <section className="sidebar-widget"><ArticleToc items={toc} /></section>}
     {featured && <section className="sidebar-widget"><div className="flex items-center justify-between"><h2 className="sidebar-title">Featured article</h2><Tag className="size-4 text-[#54bd70]" /></div><Link href={`/${featured.slug}`} className="group mt-4 block overflow-hidden rounded-xl bg-[#f3f6f9] dark:bg-white/5"><div className="relative aspect-[1.8] overflow-hidden">{getFeaturedImage(featured) && <Image src={getFeaturedImage(featured)} alt="" fill sizes="300px" className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />}</div><div className="p-4"><p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#54bd70]">{stripHtml(getPostCategories(featured)[0]?.name || 'Latest')}</p><h3 className="mt-2 line-clamp-3 text-[15px] font-bold leading-5 text-[#17253d] group-hover:text-[#54bd70] dark:text-white">{stripHtml(featured.title.rendered)}</h3></div></Link></section>}
     <section className="sidebar-widget"><h2 className="sidebar-title">Recent posts</h2><div className="mt-4 flex flex-col gap-2">{recent.slice(0, 4).map((post) => <PostMiniCard key={post.id} post={post} />)}</div></section>
     {categories.length > 0 && <section className="sidebar-widget"><h2 className="sidebar-title">Categories</h2><div className="mt-4 flex flex-col gap-2">{categories.slice(0, 7).map((category) => <Link key={category.id} href={`/?category=${category.slug}`} className="flex items-center justify-between rounded-lg px-3 py-2 text-[13px] text-[#647087] transition-colors hover:bg-[#f6f8fb] hover:text-[#54bd70] dark:text-[#b6c1d0] dark:hover:bg-white/5"><span>{stripHtml(category.name)}</span><span className="text-xs">{category.count}</span></Link>)}</div></section>}
